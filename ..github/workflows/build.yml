@@ -1,4 +1,4 @@
-name: Build UDP Proxy
+name: Build win
 
 on:
   push:
