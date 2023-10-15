@@ -17,12 +17,18 @@ jobs:
       - name: Install MSVC Build Tools
         uses: microsoft/setup-msbuild@v1.0.2
 
+      - name: Get Visual Studio installation path
+        id: vswhere
+        run: |
+          $vswherePath = Join-Path $env:ProgramFiles 'Microsoft Visual Studio\Installer\vswhere.exe'
+          $vsInstallPath = & $vswherePath -latest -property installationPath
+          echo "##vso[task.setvariable variable=VSINSTALLPATH]$vsInstallPath"
+
       - name: Compile Connect
         run: |
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x64
-        
-      - name: Compile Connect 2
-        run: |
+          $vsInstallPath = $env:VSINSTALLPATH
+          $vcvarsallPath = Join-Path $vsInstallPath 'VC\Auxiliary\Build\vcvarsall.bat'
+          & $vcvarsallPath x64
           cl connect.c /Feconnect.exe wsock32.lib advapi32.lib
 
       - name: ls -al
