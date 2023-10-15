@@ -17,7 +17,7 @@ jobs:
         run: sudo apt-get install -y mingw-w64
 
       - name: Compile win
-        run: x86_64-w64-mingw32-gcc -o connect.exe connect.c -lws2_32 -lwsock32 -liphlpapi
+        run: x86_64-w64-mingw32-gcc -o connect.exe connect.c
         
       - name: ls -al
         run: ls -al ./
