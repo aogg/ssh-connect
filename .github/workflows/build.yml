@@ -16,8 +16,8 @@ jobs:
       - name: Set up MinGW
         run: sudo apt-get install -y mingw-w64
 
-      - name: Compile UDP Proxy
-        run: x86_64-w64-mingw32-gcc -o connect.exe connect.c -lws2_32
+      - name: Compile win
+        run: x86_64-w64-mingw32-gcc -o connect.exe connect.c -lwsock32 -liphlpapi
         
       - name: ls -al
         run: ls -al ./
@@ -30,7 +30,7 @@ jobs:
         with:
           tag_name: v1.1.${{ github.run_number }}
           release_name: Release v1.1.${{ github.run_number }}
-          body: Release of UDP Proxy latest
+          body: Release of win latest
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
