@@ -14,12 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install MSVC Build Tools
-        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Install MinGW
+        uses: eskibars/setup-mingw@v1
 
 
       - name: Compile Connect
-        run: cl connect.c wsock32.lib advapi32.lib
+        run: gcc connect.c -o connect
 
 
 
