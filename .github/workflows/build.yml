@@ -20,7 +20,7 @@ jobs:
           platform: x64
 
 
-      - name: Compile Connect
+      - name: Compile win
         run: gcc connect.c -o connect
 
 
